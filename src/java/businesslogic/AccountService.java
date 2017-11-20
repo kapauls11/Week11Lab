@@ -63,4 +63,12 @@ public class AccountService {
         return null;
     }
     
+    private boolean forgotPassword(String email, String path)
+    {
+        UserService us = new UserService();
+        
+        
+        return true;
+    }
+    
 }

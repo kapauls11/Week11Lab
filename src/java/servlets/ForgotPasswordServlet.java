@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import businesslogic.AccountService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,6 +30,14 @@ public class ForgotPasswordServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
+        String action = request.getParameter("action");
+        if(action!=null)
+        {
+            if(action.equals("forgot"))
+            {
+                AccountService as = new AccountService();
+                
+            }
+        }
     }
 }
