@@ -1,7 +1,6 @@
 package servlets;
 
 import businesslogic.UserService;
-import domainmodel.Role;
 import domainmodel.User;
 import java.io.IOException;
 import java.util.List;
