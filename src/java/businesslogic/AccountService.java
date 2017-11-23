@@ -85,6 +85,8 @@ public class AccountService
                     HashMap<String, String> contents = new HashMap<>();
                     contents.put("firstname", user.getFirstname());
                     contents.put("date", ((new java.util.Date()).toString()));
+                    contents.put("lastname", user.getLastname());
+                    contents.put("password", user.getPassword());
 
                     try
                     {

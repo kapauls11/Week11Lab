@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,9 @@ public class ForgotPasswordServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        
         String action = request.getParameter("action");
         String email = request.getParameter("email");
         String path = getServletContext().getRealPath("/WEB-INF");
@@ -50,7 +54,9 @@ public class ForgotPasswordServlet extends HttpServlet
                 }
                 if(forgotPassword == true)
                 {
-                    //send email 
+                    session.setAttribute("username", username);
+                    response.sendRedirect("login");
+                    session.setAttribute("errormessage", "Password has been successfully sent to your email box");
                 }
             }
         }
