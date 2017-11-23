@@ -62,6 +62,11 @@ public class User implements Serializable
     @Basic(optional = false)
     @Column(name = "Lastname")
     private String lastname;
+    
+    @Basic(optional=false)
+    @Column(name = "ResetPasswordUUID")
+    private String resetpassworduuid;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Note> noteList;
     @JoinColumn(name = "Role", referencedColumnName = "RoleID")
@@ -167,6 +172,18 @@ public class User implements Serializable
     {
         this.role = role;
     }
+
+    public String getResetpassworduuid()
+    {
+        return resetpassworduuid;
+    }
+
+    public void setResetpassworduuid(String resetpassworduuid)
+    {
+        this.resetpassworduuid = resetpassworduuid;
+    }
+    
+    
 
     @Override
     public int hashCode()

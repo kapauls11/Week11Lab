@@ -3,12 +3,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Forgot Password Page</title>
+        <title>Reset Password Page</title>
     </head>
     <body>
-        <h1>Forgot Password</h1>
-        <p>Please enter your email address to retrieve your password</p>
-        <form action="forgot?action=forgot" method="post">
+        <h1>Reset Password</h1>
+        <p>Please enter your email address to reset your password</p>
+        <form action="reset?action=reset" method="post">
             Email Address: <input type="text" name="email"><br>
             <input type="submit" value="Submit">
         </form>

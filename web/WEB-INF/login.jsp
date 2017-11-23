@@ -21,6 +21,7 @@
             <input type="submit" value="Login">
         </form>
         <p><b><a href="forgot">Forgot password</a></b></p>
+        <p><b><a href="reset">Reset password</a></b></p>
         <p>${errormessage}</p>
     </body>
 </html>

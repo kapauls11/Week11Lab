@@ -10,6 +10,7 @@ import dataaccess.UserDB;
 import domainmodel.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
@@ -111,6 +112,13 @@ public class AccountService
             Logger.getLogger(AccountService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-
     }
+    
+    public void resetPassword(String email, String path, String url)
+    {
+        String uuid = UUID.randomUUID().toString();
+        String link = url+"?uuid="+uuid;
+        
+    }
+    
 }
