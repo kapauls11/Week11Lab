@@ -86,6 +86,7 @@ public class AccountService
                     contents.put("firstname", user.getFirstname());
                     contents.put("date", ((new java.util.Date()).toString()));
                     contents.put("lastname", user.getLastname());
+                    contents.put("username", user.getUsername());
                     contents.put("password", user.getPassword());
 
                     try
