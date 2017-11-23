@@ -33,24 +33,25 @@ public class ForgotPasswordServlet extends HttpServlet
     {
         String action = request.getParameter("action");
         String email = request.getParameter("email");
-        String path = "/emailtemplates/login.html";
+        String path = getServletContext().getRealPath("/WEB-INF");
+        
+        AccountService as = new AccountService();
         if(action!=null)
         {
             if(action.equals("forgot"))
             {
-                AccountService as = new AccountService();
-                Boolean forgotPassword = false;
-                try {
+                boolean forgotPassword = false;
+                try
+                {
                     forgotPassword = as.forgotPassword(email, path);
-                } catch (Exception ex) {
+                } catch (Exception ex)
+                {
                     Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if(forgotPassword == true)
                 {
-                    
+                    //send email 
                 }
-                        
-                
             }
         }
     }
