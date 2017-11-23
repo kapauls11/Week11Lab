@@ -29,9 +29,9 @@
                     <td>${user.role.roleName}</td>
                     <td>
                         <ul>
-                        <c:forEach var="note" items="${user.noteList}">
-                            <li>${note.title}</li>
-                        </c:forEach>
+                            <c:forEach var="note" items="${user.noteList}">
+                                <li>${note.title}</li>
+                                </c:forEach>
                         </ul>
                     </td>
                     <td>

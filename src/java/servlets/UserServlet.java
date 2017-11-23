@@ -11,34 +11,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UserServlet extends HttpServlet {
+public class UserServlet extends HttpServlet
+{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException
+    {
+
         UserService us = new UserService();
         String action = request.getParameter("action");
-        if (action != null && action.equals("view")) {
+        if (action != null && action.equals("view"))
+        {
             String selectedUsername = request.getParameter("selectedUsername");
-            try {
+            try
+            {
 
                 User user = us.get(selectedUsername);
-              
-                
+
                 request.setAttribute("selectedUser", user);
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
-        
-        
-        List<User> users = null;        
-        try {
+
+        List<User> users = null;
+        try
+        {
             users = us.getAll();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("users", users);
@@ -47,7 +50,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
 
         String action = request.getParameter("action");
         String username = request.getParameter("username");
@@ -59,26 +63,33 @@ public class UserServlet extends HttpServlet {
 
         UserService us = new UserService();
 
-        try {
-            if (action.equals("delete")) {
+        try
+        {
+            if (action.equals("delete"))
+            {
                 String selectedUsername = request.getParameter("selectedUsername");
                 us.delete(selectedUsername);
-            } else if (action.equals("edit")) {
+            } else if (action.equals("edit"))
+            {
                 us.update(username, password, email, active, firstname, lastname);
-            } else if (action.equals("add")) {
+            } else if (action.equals("add"))
+            {
                 us.insert(username, password, email, active, firstname, lastname);
             }
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             request.setAttribute("errorMessage", "Whoops.  Could not perform that action.");
         }
-        
+
         List<User> users = null;
-        try {
+        try
+        {
             users = us.getAll();
-            
+
             int number_notes = users.get(0).getNoteList().size();
-            
-        } catch (Exception ex) {
+
+        } catch (Exception ex)
+        {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("users", users);

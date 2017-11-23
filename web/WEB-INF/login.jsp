@@ -20,7 +20,7 @@
             <input type="password" name="password"><br>
             <input type="submit" value="Login">
         </form>
-        <a href="forgot">Forgot password</a>
-        ${errormessage}
+        <p><b><a href="forgot">Forgot password</a></b></p>
+        <p>${errormessage}</p>
     </body>
 </html>

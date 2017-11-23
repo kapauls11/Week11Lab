@@ -30,13 +30,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "note")
 @XmlRootElement
-@NamedQueries({
+@NamedQueries(
+{
     @NamedQuery(name = "Note.findAll", query = "SELECT n FROM Note n")
     , @NamedQuery(name = "Note.findByNoteID", query = "SELECT n FROM Note n WHERE n.noteID = :noteID")
     , @NamedQuery(name = "Note.findByDateCreated", query = "SELECT n FROM Note n WHERE n.dateCreated = :dateCreated")
     , @NamedQuery(name = "Note.findByTitle", query = "SELECT n FROM Note n WHERE n.title = :title")
-    , @NamedQuery(name = "Note.findByContents", query = "SELECT n FROM Note n WHERE n.contents = :contents")})
-public class Note implements Serializable {
+    , @NamedQuery(name = "Note.findByContents", query = "SELECT n FROM Note n WHERE n.contents = :contents")
+})
+public class Note implements Serializable
+{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,83 +61,101 @@ public class Note implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User owner;
 
-    public Note() {
+    public Note()
+    {
     }
 
-    public Note(Integer noteID) {
+    public Note(Integer noteID)
+    {
         this.noteID = noteID;
     }
 
-    public Note(Integer noteID, Date dateCreated, String title, String contents) {
+    public Note(Integer noteID, Date dateCreated, String title, String contents)
+    {
         this.noteID = noteID;
         this.dateCreated = dateCreated;
         this.title = title;
         this.contents = contents;
     }
 
-    public Integer getNoteID() {
+    public Integer getNoteID()
+    {
         return noteID;
     }
 
-    public void setNoteID(Integer noteID) {
+    public void setNoteID(Integer noteID)
+    {
         this.noteID = noteID;
     }
 
-    public Date getDateCreated() {
+    public Date getDateCreated()
+    {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(Date dateCreated)
+    {
         this.dateCreated = dateCreated;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         this.title = title;
     }
 
-    public String getContents() {
+    public String getContents()
+    {
         return contents;
     }
 
-    public void setContents(String contents) {
+    public void setContents(String contents)
+    {
         this.contents = contents;
     }
 
-    public User getOwner() {
+    public User getOwner()
+    {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(User owner)
+    {
         this.owner = owner;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 0;
         hash += (noteID != null ? noteID.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object object)
+    {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Note)) {
+        if (!(object instanceof Note))
+        {
             return false;
         }
         Note other = (Note) object;
-        if ((this.noteID == null && other.noteID != null) || (this.noteID != null && !this.noteID.equals(other.noteID))) {
+        if ((this.noteID == null && other.noteID != null) || (this.noteID != null && !this.noteID.equals(other.noteID)))
+        {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "domainmodel.Note[ noteID=" + noteID + " ]";
     }
-    
+
 }

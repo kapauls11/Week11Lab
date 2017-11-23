@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 public class ForgotPasswordServlet extends HttpServlet
 {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -33,16 +34,16 @@ public class ForgotPasswordServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession();
-        String username = (String)session.getAttribute("username");
-        
+        String username = (String) session.getAttribute("username");
+
         String action = request.getParameter("action");
         String email = request.getParameter("email");
         String path = getServletContext().getRealPath("/WEB-INF");
-        
+
         AccountService as = new AccountService();
-        if(action!=null)
+        if (action != null)
         {
-            if(action.equals("forgot"))
+            if (action.equals("forgot"))
             {
                 boolean forgotPassword = false;
                 try
@@ -52,7 +53,7 @@ public class ForgotPasswordServlet extends HttpServlet
                 {
                     Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if(forgotPassword == true)
+                if (forgotPassword == true)
                 {
                     session.setAttribute("username", username);
                     response.sendRedirect("login");
