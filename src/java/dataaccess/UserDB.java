@@ -105,7 +105,6 @@ public class UserDB {
     public User getUserByEmail(String email) throws NotesDBException
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        //EntityTransaction trans = em.getTransaction();
         
         try {
             User user = em.createNamedQuery("User.findByEmail", User.class).setParameter("email", email).getSingleResult();

@@ -7,7 +7,8 @@ package servlets;
 
 import businesslogic.AccountService;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,24 @@ public class ForgotPasswordServlet extends HttpServlet
             throws ServletException, IOException
     {
         String action = request.getParameter("action");
+        String email = request.getParameter("email");
+        String path = "/emailtemplates/login.html";
         if(action!=null)
         {
             if(action.equals("forgot"))
             {
                 AccountService as = new AccountService();
+                Boolean forgotPassword = false;
+                try {
+                    forgotPassword = as.forgotPassword(email, path);
+                } catch (Exception ex) {
+                    Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(forgotPassword == true)
+                {
+                    
+                }
+                        
                 
             }
         }
