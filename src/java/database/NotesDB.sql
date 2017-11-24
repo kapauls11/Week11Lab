@@ -17,7 +17,6 @@ CREATE TABLE `User`(
     Firstname VARCHAR(50) NOT NULL,
     Lastname VARCHAR(50) NOT NULL,
     `Role` INT(11) NOT NULL,
-    ResetPasswordUUID VARCHAR(50) NOT NULL,
     PRIMARY KEY (Username),
     KEY `FK_Role_User` (`Role`),
     CONSTRAINT `FK_Role_User` FOREIGN KEY (`Role`) REFERENCES `Role` (`RoleID`) ON DELETE RESTRICT ON UPDATE RESTRICT
