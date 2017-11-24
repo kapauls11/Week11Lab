@@ -30,19 +30,15 @@ public class AccountService
 
             if (user.getPassword().equals(password))
             {
-                // successful login
                 Logger.getLogger(AccountService.class.getName())
                         .log(Level.INFO,
                                 "A user logged in: {0}", username);
                 String email = user.getEmail();
                 try
                 {
-                    // WebMailService.sendMail(email, "NotesKeepr Login", "Big brother is watching you!  Hi " + user.getFirstname(), false);
-
                     HashMap<String, String> contents = new HashMap<>();
                     contents.put("firstname", user.getFirstname());
                     contents.put("date", ((new java.util.Date()).toString()));
-
                     try
                     {
                         WebMailService.sendMail(email, "NotesKeepr Login", path + "/emailtemplates/login.html", contents);
@@ -75,14 +71,11 @@ public class AccountService
             user = userDB.getUserByEmail(email);
             if (user.getEmail().equals(email))
             {
-                // successful login
                 Logger.getLogger(AccountService.class.getName())
                         .log(Level.INFO,
                                 "A user logged in: {0}", user.getUsername());
                 try
                 {
-                    // WebMailService.sendMail(email, "NotesKeepr Login", "Big brother is watching you!  Hi " + user.getFirstname(), false);
-
                     HashMap<String, String> contents = new HashMap<>();
                     contents.put("firstname", user.getFirstname());
                     contents.put("date", ((new java.util.Date()).toString()));
@@ -113,12 +106,12 @@ public class AccountService
         }
         return false;
     }
-    
+    /*
     public void resetPassword(String email, String path, String url)
     {
         String uuid = UUID.randomUUID().toString();
         String link = url+"?uuid="+uuid;
         
     }
-    
+    */
 }

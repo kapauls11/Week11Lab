@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import businesslogic.AccountService;
@@ -34,9 +29,6 @@ public class LoginServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
-        HttpSession session = request.getSession();
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -52,7 +44,7 @@ public class LoginServlet extends HttpServlet
 
         if (as.checkLogin(username, password, path) != null)
         {
-
+            HttpSession session = request.getSession();
             session.setAttribute("username", username);
             response.sendRedirect("home");
         } else
