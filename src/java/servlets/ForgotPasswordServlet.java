@@ -34,7 +34,6 @@ public class ForgotPasswordServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
 
         String action = request.getParameter("action");
         String email = request.getParameter("email");
@@ -55,7 +54,6 @@ public class ForgotPasswordServlet extends HttpServlet
                 }
                 if (forgotPassword == true)
                 {
-                    session.setAttribute("username", username);
                     response.sendRedirect("login");
                     session.setAttribute("errormessage", "Password has been successfully sent to your email box");
                 }

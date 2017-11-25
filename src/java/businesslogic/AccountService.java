@@ -85,7 +85,7 @@ public class AccountService
 
                     try
                     {
-                        WebMailService.sendMail(user.getEmail(), "NotesKeepr Login", path + "/emailtemplates/login.html", contents);
+                        WebMailService.sendMail(user.getEmail(), "NotesKeepr Login", path + "/emailtemplates/forgotpassword.html", contents);
                     } catch (IOException ex)
                     {
                         Logger.getLogger(AccountService.class.getName()).log(Level.SEVERE, null, ex);
