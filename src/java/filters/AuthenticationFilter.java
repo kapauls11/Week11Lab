@@ -20,20 +20,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class AuthenticationFilter implements Filter {
-     
+
     private FilterConfig filterConfig = null;
-    
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        
-        // before the servlet
-        // authenticate here
-        
+
         HttpServletRequest httprequest = (HttpServletRequest) request;
         HttpSession session = httprequest.getSession();
-        
+
         if (session.getAttribute("username") != null) {
             // continue on to the next filter or servlet
             chain.doFilter(request, response);
@@ -41,21 +38,15 @@ public class AuthenticationFilter implements Filter {
             HttpServletResponse httpresponse = (HttpServletResponse) response;
             httpresponse.sendRedirect("login");
         }
-        
-        
-        // after the servlet
-        
-        
     }
 
     @Override
-    public void destroy() {        
+    public void destroy() {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) {        
+    public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
     }
 
-    
 }

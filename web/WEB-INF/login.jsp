@@ -16,6 +16,6 @@
         </form>
         <p><b><a href="forgot">Forgot password</a></b></p>
         <p><b><a href="reset">Reset password</a></b></p>
-        <p>${errormessage}</p>
+        <p>${errorMessage}</p>
     </body>
 </html>

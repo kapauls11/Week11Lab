@@ -30,17 +30,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "user")
 @XmlRootElement
 @NamedQueries(
-{
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
-    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active")
-    , @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname")
-    , @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname")
-})
-public class User implements Serializable
-{
+        {
+            @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+            , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+            , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+            , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+            , @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active")
+            , @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname")
+            , @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname")
+        })
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,24 +65,21 @@ public class User implements Serializable
     @Basic(optional=false)
     @Column(name = "ResetPasswordUUID")
     private String resetpassworduuid;
-    */
+     */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Note> noteList;
     @JoinColumn(name = "Role", referencedColumnName = "RoleID")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Role role;
 
-    public User()
-    {
+    public User() {
     }
 
-    public User(String username)
-    {
+    public User(String username) {
         this.username = username;
     }
 
-    public User(String username, String password, String email, boolean active, String firstname, String lastname)
-    {
+    public User(String username, String password, String email, boolean active, String firstname, String lastname) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -92,126 +88,92 @@ public class User implements Serializable
         this.lastname = lastname;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public boolean getActive()
-    {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(boolean active)
-    {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    public String getFirstname()
-    {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname)
-    {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname()
-    {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname)
-    {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
     @XmlTransient
-    public List<Note> getNoteList()
-    {
+    public List<Note> getNoteList() {
         return noteList;
     }
 
-    public void setNoteList(List<Note> noteList)
-    {
+    public void setNoteList(List<Note> noteList) {
         this.noteList = noteList;
     }
 
-    public Role getRole()
-    {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Role role)
-    {
+    public void setRole(Role role) {
         this.role = role;
     }
-    /*
-    public String getResetpassworduuid()
-    {
-        return resetpassworduuid;
-    }
-
-    public void setResetpassworduuid(String resetpassworduuid)
-    {
-        this.resetpassworduuid = resetpassworduuid;
-    }
-    */
-    
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (username != null ? username.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User))
-        {
+    public boolean equals(Object object) {
+        if (!(object instanceof User)) {
             return false;
         }
         User other = (User) object;
-        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username)))
-        {
+        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "domainmodel.User[ username=" + username + " ]";
     }
 

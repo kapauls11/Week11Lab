@@ -15,24 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author 636334
- */
-public class ForgotPasswordServlet extends HttpServlet
-{
+public class ForgotPasswordServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
 
         String action = request.getParameter("action");
@@ -40,22 +33,17 @@ public class ForgotPasswordServlet extends HttpServlet
         String path = getServletContext().getRealPath("/WEB-INF");
 
         AccountService as = new AccountService();
-        if (action != null)
-        {
-            if (action.equals("forgot"))
-            {
+        if (action != null) {
+            if (action.equals("forgot")) {
                 boolean forgotPassword = false;
-                try
-                {
+                try {
                     forgotPassword = as.forgotPassword(email, path);
-                } catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (forgotPassword == true)
-                {
+                if (forgotPassword == true) {
                     response.sendRedirect("login");
-                    session.setAttribute("errormessage", "Password has been successfully sent to your email box");
+                    session.setAttribute("errormessage", "Password has been successfully sent to your email");
                 }
             }
         }

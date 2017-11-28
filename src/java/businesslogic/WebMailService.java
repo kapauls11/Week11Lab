@@ -23,33 +23,28 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class WebMailService
-{
+public class WebMailService {
 
-    public static void sendMail(String to, String subject, String template, HashMap<String, String> contents) throws FileNotFoundException, IOException, MessagingException, NamingException
-    {
+    public static void sendMail(String to, String subject, String template, HashMap<String, String> contents) throws FileNotFoundException, IOException, MessagingException, NamingException {
         BufferedReader br = new BufferedReader(new FileReader(new File(template)));
 
         StringBuilder body = new StringBuilder();
         String line = br.readLine();
-        while (line != null)
-        {
+        while (line != null) {
             body.append(line);
             line = br.readLine();
         }
 
         String bodyString = body.toString();
 
-        for (String key : contents.keySet())
-        {
+        for (String key : contents.keySet()) {
             bodyString = bodyString.replace("{{" + key + "}}", contents.get(key));
         }
 
         sendMail(to, subject, bodyString, true);
     }
 
-    public static void sendMail(String to, String subject, String body, boolean bodyIsHTML) throws MessagingException, NamingException
-    {
+    public static void sendMail(String to, String subject, String body, boolean bodyIsHTML) throws MessagingException, NamingException {
         Context env = (Context) new InitialContext().lookup("java:comp/env");
         String username = (String) env.lookup("webmail-username");
         String password = (String) env.lookup("webmail-password");
@@ -66,16 +61,14 @@ public class WebMailService
         // create a message
         Message message = new MimeMessage(session);
         message.setSubject(subject);
-        if (bodyIsHTML)
-        {
+        if (bodyIsHTML) {
             message.setContent(body, "text/html");
-        } else
-        {
+        } else {
             message.setText(body);
         }
 
         // address the message
-        Address fromAddress = new InternetAddress("henryhan9527@gmail.com");//server
+        Address fromAddress = new InternetAddress("katrinapauls1997@gmail.com");
         Address toAddress = new InternetAddress(to);
         message.setFrom(fromAddress);
         message.setRecipient(Message.RecipientType.TO, toAddress);

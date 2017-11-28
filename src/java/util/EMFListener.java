@@ -18,7 +18,7 @@ public class EMFListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        
+
     }
 
     @Override

@@ -1,15 +1,12 @@
 package dataaccess;
 
-public class NotesDBException extends Exception
-{
+public class NotesDBException extends Exception {
 
-    public NotesDBException()
-    {
+    public NotesDBException() {
 
     }
 
-    public NotesDBException(String message)
-    {
+    public NotesDBException(String message) {
         super(message);
     }
 }
